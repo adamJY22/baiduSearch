@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*,ul{padding:0; margin:0;}
+			li,ul{list-style: none;}
+			#box{
+				position:relative;
+				width:350px;
+				height:380px;
+				margin:100px auto 0;
+				background:url(1.jpg) no-repeat;
+				padding-left:250px;
+				padding-top:20px;
+			}
+			#tx{width:222px; height:33px;}
+			#btn{width:77px; height:33px;}
+			#list{
+				width:220px; position:absolute; left:250px; top: 53px;
+				border:1px solid #fff; border-top:none; margin-left:1px;
+					
+			}
+			#list li{height:35px; line-height:35px;}
+			#list li a{color:#fff; text-decoration: none; display:block;}
+			
+			a:hover{background:#0000FF;}
+		</style>
+		<script src="myTool.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" name="tx" id="tx" value="" />
+			<ul id="list">
+			
+			</ul>
+			<input type="button" name="btn" id="btn" value="搜索" />
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+	//https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=关键词&cb=lihe
+		//https://www.baidu.com/s?wd= 
+		
+		
+		
+		
+		function lihe(data){
+			var str = "";
+			var oText = $("#tx");
+			var oul = $("#list");
+			for (var i = 0; i < data.s.length; i++) {
+				str += "<li><a href='https://www.baidu.com/s?wd="+data.s[i]+"&cb=lihe'>"+data.s[i]+"</a></li>"	
+			}
+			oul.innerHTML = str;
+		}
+		
+	window.onload = function(){
+		var oText = $("#tx");
+		var oBtn = $("#btn");
+		
+		var oul = $("#list");
+		oText.onkeyup = function(){
+				var osr = document.createElement("script");
+				osr.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+oText.value+"&cb=lihe"
+				document.body.appendChild(osr);
+				document.body.removeChild(osr);
+		}
+			
+		oBtn.onclick = function(){
+			window.location.href = "https://www.baidu.com/s?wd="+oText.value;
+		}
+		
+	}
+		
+	</script>
+</html>
